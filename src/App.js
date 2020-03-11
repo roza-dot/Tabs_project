@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+
+const Button = (props) => {
+  return (
+    <button onClick={props.buttonFunction}>Tabs {props.tabnumber}</button>
+  )
+}
+const Display = (props) => {
+  return(
+    <div style={{width:"500px", height:"500px"}}>
+      {props.names}
+    </div>
+  );
+}
+
 function App() {
+  const [textNumber, setTextNumber ] = useState([0]);
+  const changeNumber = (number) => {
+    setTextNumber(number)
+  }
+
+
+  const textOptions = [
+    'Billy',
+    'Bob',
+    'Joe',
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Button buttonFunction={() => changeNumber(0)} tabnumber="1"/>
+        <Button buttonFunction={() => changeNumber(1)} tabnumber="2"/>
+        <Button buttonFunction={() => changeNumber(2)} tabnumber="3"/>
+        <Display names={textOptions[textNumber]}/>
+      </div>
     </div>
   );
 }
